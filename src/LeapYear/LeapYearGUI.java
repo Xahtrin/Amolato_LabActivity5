@@ -6,7 +6,6 @@ public class LeapYearGUI extends JFrame{
     private JPanel panel1;
     private JTextField tfYear;
     private JButton btnCheckYear;
-    private JLabel input;
 
     public static void main (String args[]) {
         LeapYearGUI app = new LeapYearGUI();
@@ -23,6 +22,7 @@ public class LeapYearGUI extends JFrame{
 
 
     private void createUIComponents() {
+        JTextField field1 = new JTextField();
         // TODO: place custom component creation code here
     }
 }
