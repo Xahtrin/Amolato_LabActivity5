@@ -19,27 +19,40 @@ public class SimpleCalcGUI extends JFrame{
         btnCompute.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                double a = Integer.parseInt(tfNumber1.getText());
-                double b = Integer.parseInt(tfNumber2.getText());
-                int op = cbOperations.getSelectedIndex();
-                double res;
-                switch (op) {
-                    case 0:
-                        res = a + b;
-                        tfResult.setText(String.valueOf(res));
-                        break;
-                    case 1:
-                        res = a - b;
-                        tfResult.setText(String.valueOf(res));
-                        break;
-                    case 2:
-                        res = a * b;
-                        tfResult.setText(String.valueOf(res));
-                        break;
-                    case 3:
-                        res = a / b;
-                        tfResult.setText(String.valueOf(res));
-                        break;
+                try {
+                    double a = Integer.parseInt(tfNumber1.getText());
+                    double b = Integer.parseInt(tfNumber2.getText());
+                    int op = cbOperations.getSelectedIndex();
+                    double res;
+                    switch (op) {
+                        case 0:
+                            res = a + b;
+                            tfResult.setText(String.valueOf(res));
+                            break;
+                        case 1:
+                            res = a - b;
+                            tfResult.setText(String.valueOf(res));
+                            break;
+                        case 2:
+                            res = a * b;
+                            tfResult.setText(String.valueOf(res));
+                            break;
+                        case 3:
+                        if (b == 0) {
+                            throw new ArithmeticException();
+                        }
+                            res = a / b;
+                            tfResult.setText(String.valueOf(res));
+                            break;
+                    }
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(panel1, "Invalid input(s)","Error", JOptionPane.ERROR_MESSAGE);
+                    tfNumber1.setText("");
+                    tfNumber2.setText("");
+                } catch (ArithmeticException e) {
+                    JOptionPane.showMessageDialog(panel1, "Invalid operation","Error", JOptionPane.ERROR_MESSAGE);
+                    tfNumber1.setText("");
+                    tfNumber2.setText("");
                 }
             }
         });
