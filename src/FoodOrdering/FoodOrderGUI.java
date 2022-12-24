@@ -24,39 +24,46 @@ public class FoodOrderGUI extends JFrame{
         btnOrder.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                int pri = 0;
-                if (cPizza.isSelected()) {
-                    pri += 100;
+                try {
+                    int pri = 0;
+                    if (cPizza.isSelected()) {
+                        pri += 100;
+                    }
+                    if (cBurger.isSelected()) {
+                        pri += 80;
+                    }
+                    if (cFries.isSelected()) {
+                        pri += 65;
+                    }
+                    if (cSoftDrinks.isSelected()) {
+                        pri += 55;
+                    }
+                    if (cTea.isSelected()) {
+                        pri += 50;
+                    }
+                    if (cSundae.isSelected()) {
+                        pri += 40;
+                    }
+                    if (pri == 0) {
+                        throw new Exception();
+                    }
+                    double dis = 0;
+                    if (rbNone.isSelected()) {
+                        dis = 1;
+                    } else if (rb5.isSelected()) {
+                        dis = 0.95;
+                    } else if (rb10.isSelected()) {
+                        dis = 0.90;
+                    } else if (rb15.isSelected()) {
+                        dis = 0.85;
+                    } else {
+                        throw new Exception();
+                    }
+                    double res = pri * dis;
+                    JOptionPane.showMessageDialog(panel1, ("The total price is Php " + res),"Message", JOptionPane.PLAIN_MESSAGE);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(panel1, "Please Select Food Item(s) and Discount Type","Error", JOptionPane.ERROR_MESSAGE);
                 }
-                if (cBurger.isSelected()) {
-                    pri += 80;
-                }
-                if (cFries.isSelected()) {
-                    pri += 65;
-                }
-                if (cSoftDrinks.isSelected()) {
-                    pri += 55;
-                }
-                if (cTea.isSelected()) {
-                    pri += 50;
-                }
-                if (cSundae.isSelected()) {
-                    pri += 40;
-                }
-                double dis = 0;
-                if (rbNone.isSelected()) {
-                    dis = 1;
-                }
-                if (rb5.isSelected()) {
-                    dis = 0.95;
-                } else if (rb10.isSelected()) {
-                    dis = 0.90;
-                } else if (rb15.isSelected()) {
-                    dis = 0.85;
-                }
-                double res = pri * dis;
-                JOptionPane.showMessageDialog(panel1, ("The total price is Php " + res),"Message", JOptionPane.PLAIN_MESSAGE);
-
             }
         });
     }
