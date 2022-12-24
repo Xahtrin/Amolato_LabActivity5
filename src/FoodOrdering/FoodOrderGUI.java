@@ -3,6 +3,8 @@ package FoodOrdering;
 import LeapYear.LeapYearGUI;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class FoodOrderGUI extends JFrame{
     private JPanel panel1;
@@ -17,6 +19,47 @@ public class FoodOrderGUI extends JFrame{
     private JRadioButton rb5;
     private JRadioButton rb10;
     private JRadioButton rb15;
+
+    public FoodOrderGUI() {
+        btnOrder.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                int pri = 0;
+                if (cPizza.isSelected()) {
+                    pri += 100;
+                }
+                if (cBurger.isSelected()) {
+                    pri += 80;
+                }
+                if (cFries.isSelected()) {
+                    pri += 65;
+                }
+                if (cSoftDrinks.isSelected()) {
+                    pri += 55;
+                }
+                if (cTea.isSelected()) {
+                    pri += 50;
+                }
+                if (cSundae.isSelected()) {
+                    pri += 40;
+                }
+                double dis = 0;
+                if (rbNone.isSelected()) {
+                    dis = 1;
+                }
+                if (rb5.isSelected()) {
+                    dis = 0.95;
+                } else if (rb10.isSelected()) {
+                    dis = 0.90;
+                } else if (rb15.isSelected()) {
+                    dis = 0.85;
+                }
+                double res = pri * dis;
+                JOptionPane.showMessageDialog(panel1, ("The total price is Php " + res),"Message", JOptionPane.PLAIN_MESSAGE);
+
+            }
+        });
+    }
 
     public static void main (String args[]) {
 
